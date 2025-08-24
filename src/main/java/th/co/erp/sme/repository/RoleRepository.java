@@ -6,9 +6,7 @@ import th.co.erp.sme.model.entity.RoleEntity;
 
 import java.util.List;
 
-
 @Repository
-public interface RoleRepository extends JpaRepository<RoleEntity,Integer> {
-
+public interface RoleRepository extends JpaRepository<RoleEntity, Integer> {
     List<RoleEntity> findAllByOrderByRoleCodeAsc();
 }

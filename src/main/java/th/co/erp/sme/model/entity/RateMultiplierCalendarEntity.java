@@ -4,19 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 import th.co.erp.sme.configuration.jpa.AuditListeners;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "tbl_role", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_role__company_code__role_code__is_deleted", columnNames = {"company_code", "role_code", "is_deleted"})
+@Table(name = "tbl_rate_multiplier_calendar", uniqueConstraints = {
+    @UniqueConstraint(name = "uk_tbl_rate_multiplier_calendar__branch_code__company_code__rate_date__rate_type_code__is_deleted", columnNames = {"branch_code", "company_code", "rate_date", "rate_type_code", "is_deleted"})
 })
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditListeners.class)
-public class RoleEntity extends BaseEntity<RoleEntity> {
+public class RateMultiplierCalendarEntity extends BaseEntity<RateMultiplierCalendarEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,20 +27,20 @@ public class RoleEntity extends BaseEntity<RoleEntity> {
     @Column(name = "company_code", nullable = false)
     private String companyCode;
 
-    @Column(name = "role_code", nullable = false)
-    private String roleCode;
+    @Column(name = "branch_code")
+    private String branchCode;
 
-    @Column(name = "name_th", nullable = false)
-    private String nameTh;
+    @Column(name = "rate_date", nullable = false)
+    private LocalDate rateDate;
 
-    @Column(name = "name_en", nullable = false)
-    private String nameEn;
+    @Column(name = "rate_type_code", nullable = false)
+    private String rateTypeCode;
 
-    @Column(name = "level_rank", nullable = false)
-    private Integer levelRank;
+    @Column(name = "multiplier", precision = 12, scale = 4, nullable = false)
+    private BigDecimal multiplier;
 
-    @Column(name = "is_active", nullable = false)
-    private String isActive;
+    @Column(name = "reason")
+    private String reason;
 
     @Column(name = "is_deleted", nullable = false)
     private String isDeleted;

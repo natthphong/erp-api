@@ -4,19 +4,20 @@ import jakarta.persistence.*;
 import lombok.*;
 import th.co.erp.sme.configuration.jpa.AuditListeners;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "tbl_role", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_role__company_code__role_code__is_deleted", columnNames = {"company_code", "role_code", "is_deleted"})
+@Table(name = "tbl_branch", uniqueConstraints = {
+    @UniqueConstraint(name = "uk_tbl_branch__company_code__branch_code__is_deleted", columnNames = {"company_code", "branch_code", "is_deleted"})
 })
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditListeners.class)
-public class RoleEntity extends BaseEntity<RoleEntity> {
+public class BranchEntity extends BaseEntity<BranchEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,8 +26,8 @@ public class RoleEntity extends BaseEntity<RoleEntity> {
     @Column(name = "company_code", nullable = false)
     private String companyCode;
 
-    @Column(name = "role_code", nullable = false)
-    private String roleCode;
+    @Column(name = "branch_code", nullable = false)
+    private String branchCode;
 
     @Column(name = "name_th", nullable = false)
     private String nameTh;
@@ -34,8 +35,20 @@ public class RoleEntity extends BaseEntity<RoleEntity> {
     @Column(name = "name_en", nullable = false)
     private String nameEn;
 
-    @Column(name = "level_rank", nullable = false)
-    private Integer levelRank;
+    @Column(name = "lat", precision = 9, scale = 6)
+    private BigDecimal lat;
+
+    @Column(name = "lng", precision = 9, scale = 6)
+    private BigDecimal lng;
+
+    @Column(name = "geofence_radius_m", precision = 8, scale = 2)
+    private BigDecimal geofenceRadiusM;
+
+    @Column(name = "onsite_required_pct", precision = 5, scale = 2)
+    private BigDecimal onsiteRequiredPct;
+
+    @Column(name = "require_branch_checkin_count")
+    private Integer requireBranchCheckinCount;
 
     @Column(name = "is_active", nullable = false)
     private String isActive;

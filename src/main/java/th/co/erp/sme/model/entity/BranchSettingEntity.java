@@ -8,15 +8,15 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "tbl_role", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_role__company_code__role_code__is_deleted", columnNames = {"company_code", "role_code", "is_deleted"})
+@Table(name = "tbl_branch_setting", uniqueConstraints = {
+    @UniqueConstraint(name = "uk_tbl_branch_setting__company_code__branch_code__key_code__is_deleted", columnNames = {"company_code", "branch_code", "key_code", "is_deleted"})
 })
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditListeners.class)
-public class RoleEntity extends BaseEntity<RoleEntity> {
+public class BranchSettingEntity extends BaseEntity<BranchSettingEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,17 +25,14 @@ public class RoleEntity extends BaseEntity<RoleEntity> {
     @Column(name = "company_code", nullable = false)
     private String companyCode;
 
-    @Column(name = "role_code", nullable = false)
-    private String roleCode;
+    @Column(name = "branch_code", nullable = false)
+    private String branchCode;
 
-    @Column(name = "name_th", nullable = false)
-    private String nameTh;
+    @Column(name = "key_code", nullable = false)
+    private String keyCode;
 
-    @Column(name = "name_en", nullable = false)
-    private String nameEn;
-
-    @Column(name = "level_rank", nullable = false)
-    private Integer levelRank;
+    @Column(name = "value_text")
+    private String valueText;
 
     @Column(name = "is_active", nullable = false)
     private String isActive;

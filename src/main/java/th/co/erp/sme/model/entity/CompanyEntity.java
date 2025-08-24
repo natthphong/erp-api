@@ -8,15 +8,15 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "tbl_role", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_role__company_code__role_code__is_deleted", columnNames = {"company_code", "role_code", "is_deleted"})
+@Table(name = "tbl_company", uniqueConstraints = {
+    @UniqueConstraint(name = "uk_tbl_company__company_code__is_deleted", columnNames = {"company_code", "is_deleted"})
 })
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditListeners.class)
-public class RoleEntity extends BaseEntity<RoleEntity> {
+public class CompanyEntity extends BaseEntity<CompanyEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,17 +25,32 @@ public class RoleEntity extends BaseEntity<RoleEntity> {
     @Column(name = "company_code", nullable = false)
     private String companyCode;
 
-    @Column(name = "role_code", nullable = false)
-    private String roleCode;
-
     @Column(name = "name_th", nullable = false)
     private String nameTh;
 
     @Column(name = "name_en", nullable = false)
     private String nameEn;
 
-    @Column(name = "level_rank", nullable = false)
-    private Integer levelRank;
+    @Column(name = "tax_id")
+    private String taxId;
+
+    @Column(name = "address_line1")
+    private String addressLine1;
+
+    @Column(name = "address_line2")
+    private String addressLine2;
+
+    @Column(name = "province_code")
+    private String provinceCode;
+
+    @Column(name = "postal_code")
+    private String postalCode;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "is_active", nullable = false)
     private String isActive;
