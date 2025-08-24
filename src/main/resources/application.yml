@@ -22,7 +22,7 @@ spring:
     active:
       - local
   application:
-    name: passbook-txn-consumer
+    name: erp-application
   main:
     allow-circular-references: true
 management:
