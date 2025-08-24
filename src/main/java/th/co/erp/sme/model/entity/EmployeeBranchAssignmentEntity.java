@@ -4,19 +4,18 @@ import jakarta.persistence.*;
 import lombok.*;
 import th.co.erp.sme.configuration.jpa.AuditListeners;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "tbl_role", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_role__company_code__role_code__is_deleted", columnNames = {"company_code", "role_code", "is_deleted"})
-})
+@Table(name = "tbl_employee_branch_assignment")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditListeners.class)
-public class RoleEntity extends BaseEntity<RoleEntity> {
+public class EmployeeBranchAssignmentEntity extends BaseEntity<EmployeeBranchAssignmentEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,20 +24,20 @@ public class RoleEntity extends BaseEntity<RoleEntity> {
     @Column(name = "company_code", nullable = false)
     private String companyCode;
 
-    @Column(name = "role_code", nullable = false)
-    private String roleCode;
+    @Column(name = "employee_id", nullable = false)
+    private Integer employeeId;
 
-    @Column(name = "name_th", nullable = false)
-    private String nameTh;
+    @Column(name = "branch_code")
+    private String branchCode;
 
-    @Column(name = "name_en", nullable = false)
-    private String nameEn;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
 
-    @Column(name = "level_rank", nullable = false)
-    private Integer levelRank;
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
-    @Column(name = "is_active", nullable = false)
-    private String isActive;
+    @Column(name = "note")
+    private String note;
 
     @Column(name = "is_deleted", nullable = false)
     private String isDeleted;

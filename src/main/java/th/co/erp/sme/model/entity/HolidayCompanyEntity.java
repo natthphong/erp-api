@@ -4,19 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 import th.co.erp.sme.configuration.jpa.AuditListeners;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "tbl_role", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_role__company_code__role_code__is_deleted", columnNames = {"company_code", "role_code", "is_deleted"})
+@Table(name = "tbl_holiday_company", uniqueConstraints = {
+    @UniqueConstraint(name = "uk_tbl_holiday_company__company_code__holiday_date__is_deleted", columnNames = {"company_code", "holiday_date", "is_deleted"})
 })
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditListeners.class)
-public class RoleEntity extends BaseEntity<RoleEntity> {
+public class HolidayCompanyEntity extends BaseEntity<HolidayCompanyEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,20 +27,26 @@ public class RoleEntity extends BaseEntity<RoleEntity> {
     @Column(name = "company_code", nullable = false)
     private String companyCode;
 
-    @Column(name = "role_code", nullable = false)
-    private String roleCode;
+    @Column(name = "holiday_date", nullable = false)
+    private LocalDate holidayDate;
 
-    @Column(name = "name_th", nullable = false)
+    @Column(name = "holiday_type_code", nullable = false)
+    private String holidayTypeCode;
+
+    @Column(name = "rate_type_code")
+    private String rateTypeCode;
+
+    @Column(name = "multiplier", precision = 12, scale = 4)
+    private BigDecimal multiplier;
+
+    @Column(name = "name_th")
     private String nameTh;
 
-    @Column(name = "name_en", nullable = false)
+    @Column(name = "name_en")
     private String nameEn;
 
-    @Column(name = "level_rank", nullable = false)
-    private Integer levelRank;
-
-    @Column(name = "is_active", nullable = false)
-    private String isActive;
+    @Column(name = "is_paid", nullable = false)
+    private String isPaid;
 
     @Column(name = "is_deleted", nullable = false)
     private String isDeleted;

@@ -8,37 +8,28 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "tbl_role", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_role__company_code__role_code__is_deleted", columnNames = {"company_code", "role_code", "is_deleted"})
+@Table(name = "tbl_permission", uniqueConstraints = {
+    @UniqueConstraint(name = "uk_tbl_permission__object_code__action_code__is_deleted", columnNames = {"object_code", "action_code", "is_deleted"})
 })
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditListeners.class)
-public class RoleEntity extends BaseEntity<RoleEntity> {
+public class PermissionEntity extends BaseEntity<PermissionEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "company_code", nullable = false)
-    private String companyCode;
+    @Column(name = "object_code", nullable = false)
+    private String objectCode;
 
-    @Column(name = "role_code", nullable = false)
-    private String roleCode;
+    @Column(name = "action_code", nullable = false)
+    private String actionCode;
 
-    @Column(name = "name_th", nullable = false)
-    private String nameTh;
-
-    @Column(name = "name_en", nullable = false)
-    private String nameEn;
-
-    @Column(name = "level_rank", nullable = false)
-    private Integer levelRank;
-
-    @Column(name = "is_active", nullable = false)
-    private String isActive;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "is_deleted", nullable = false)
     private String isDeleted;
