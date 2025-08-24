@@ -3,7 +3,7 @@ package th.co.erp.sme.model.request;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import th.co.erp.sme.model.base.BaseRequest;
+import th.co.erp.sme.base.BaseRequest;
 import th.co.erp.sme.model.wrapper.UserInquiryModel;
 
 

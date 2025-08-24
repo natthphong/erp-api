@@ -20,11 +20,11 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import th.co.erp.sme.model.base.BaseException;
-import th.co.erp.sme.model.base.ErrorResponse;
-import th.co.erp.sme.model.base.BusinessException;
+import th.co.erp.sme.exception.model.BaseException;
+import th.co.erp.sme.model.error.ErrorResponse;
+import th.co.erp.sme.exception.model.BusinessException;
 
-import th.co.erp.sme.model.base.TechnicalException;
+import th.co.erp.sme.exception.model.TechnicalException;
 
 import java.net.http.HttpConnectTimeoutException;
 import java.net.http.HttpTimeoutException;

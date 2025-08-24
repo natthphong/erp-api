@@ -1,4 +1,4 @@
-package th.co.erp.sme.model.base;
+package th.co.erp.sme.exception.model;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

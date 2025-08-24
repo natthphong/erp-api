@@ -321,3 +321,14 @@ create table tbl_device (
   updated_by         int null,
   unique (company_code, device_code, is_deleted)
 );
+
+drop table if EXISTS tbl_audit;
+CREATE TABLE tbl_audit (
+                           id SERIAL PRIMARY KEY,
+                           table_name VARCHAR(255),
+                           primary_key VARCHAR(255),
+                           update_date TIMESTAMP,
+                           update_by VARCHAR(255),
+                            status VARCHAR(40),
+                           detail TEXT
+);

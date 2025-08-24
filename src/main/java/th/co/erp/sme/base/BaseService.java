@@ -1,4 +1,4 @@
-package th.co.erp.sme.model.base;
+package th.co.erp.sme.base;
 
 
 public interface BaseService<T extends BaseRequest, V extends BaseResponse> {

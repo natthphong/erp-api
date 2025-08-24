@@ -2,7 +2,7 @@ package th.co.erp.sme.model.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import th.co.erp.sme.model.base.BaseRequest;
+import th.co.erp.sme.base.BaseRequest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

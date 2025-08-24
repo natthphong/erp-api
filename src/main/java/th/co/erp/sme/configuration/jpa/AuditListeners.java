@@ -57,7 +57,7 @@ public class AuditListeners {
             Method setCreateBy = clazz.getMethod("setUpdateBy", String.class);
             setCreateBy.invoke(currentState,user);
         }catch (Exception ex){
-            ex.printStackTrace();
+            log.error(ex.getMessage());
         }
         if (!primaryFieldOpt.isEmpty()) {
             String tableName = clazz.getAnnotation(Table.class).name();

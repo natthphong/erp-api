@@ -2,26 +2,19 @@ package th.co.erp.sme.configuration;
 
 
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
-import th.co.erp.sme.model.base.AccessException;
-import th.co.erp.sme.model.base.LoggingRequestFilter;
+import th.co.erp.sme.exception.model.AccessException;
+import th.co.erp.sme.filter.JwtAuthenticationFilter;
 
-
-import java.io.IOException;
 
 @Configuration
 @Component
@@ -29,12 +22,15 @@ import java.io.IOException;
 @EnableMethodSecurity
 public class WebSecurityConfig {
 
-    private final LoggingRequestFilter loggingRequestFilter ;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter ;
 
-    public WebSecurityConfig(LoggingRequestFilter loggingRequestFilter) {
-        this.loggingRequestFilter = loggingRequestFilter;
+    public WebSecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
-
+    @Bean
+    public GrantedAuthorityDefaults grantedAuthorityDefaults() {
+        return new GrantedAuthorityDefaults("");
+    }
 
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
@@ -45,9 +41,8 @@ public class WebSecurityConfig {
 //                    auth.requestMatchers("/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
-
                 .exceptionHandling(e-> e.authenticationEntryPoint(new AccessException()))
-                .addFilterBefore(this.loggingRequestFilter , UsernamePasswordAuthenticationFilter.class).build();
+                .addFilterBefore(this.jwtAuthenticationFilter , UsernamePasswordAuthenticationFilter.class).build();
 
     }
 }

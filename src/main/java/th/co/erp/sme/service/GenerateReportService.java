@@ -9,7 +9,7 @@
 //import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 //import org.springframework.stereotype.Service;
 //import org.springframework.util.ResourceUtils;
-//import th.co.erp.sme.model.base.BaseResponse;
+//import th.co.erp.sme.base.BaseResponse;
 //import th.co.erp.sme.model.entity.UserEntity;
 //import th.co.erp.sme.model.request.UserReportRequest;
 //import th.co.erp.sme.repository.UserRepository;

@@ -1,4 +1,4 @@
-package th.co.erp.sme.model.base;
+package th.co.erp.sme.base;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

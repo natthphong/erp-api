@@ -1,7 +1,7 @@
 package th.co.erp.sme.model.response;
 
 import lombok.*;
-import th.co.erp.sme.model.base.BaseResponse;
+import th.co.erp.sme.base.BaseResponse;
 import th.co.erp.sme.model.wrapper.UserAddressModel;
 import th.co.erp.sme.model.wrapper.UserInquiryModel;
 

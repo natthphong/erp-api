@@ -1,4 +1,4 @@
-package th.co.erp.sme.model.base;
+package th.co.erp.sme.exception.model;
 
 
 
@@ -7,12 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
+import th.co.erp.sme.model.error.ErrorResponse;
 import th.co.erp.sme.util.JsonHelper;
 
 
