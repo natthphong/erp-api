@@ -28,7 +28,7 @@ spring:
 app:
   application-name: saintcare
   tokens:
-    jwt-secret: SECRET
+    jwt-secret: SECRETSECRETSECRETSECRETSECRETSECRETSECRETSECRETSECRET
     refresh-token:
       expired: 120
     access-token:

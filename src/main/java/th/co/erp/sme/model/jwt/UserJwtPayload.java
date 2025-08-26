@@ -15,7 +15,7 @@ public class UserJwtPayload {
     private String role;
     private String branchCode;
     private String companyCode;
-    private String employeeId;
+    private Integer employeeId;
     private String isActive;
     private List<String> permissions;
 }

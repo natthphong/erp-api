@@ -39,22 +39,24 @@ public class AuditListeners {
 
     @PrePersist
     public void prePersist(Object entity) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        String user =(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Class<?> clazz = entity.getClass();
-        Method setCreateBy = clazz.getMethod("setCreateBy", String.class);
-        setCreateBy.invoke(entity, user);
+        Integer user =(Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user != -1){
+            Class<?> clazz = entity.getClass();
+            Method setCreateBy = clazz.getMethod("setCreateBy", Integer.class);
+            setCreateBy.invoke(entity, user);
+        }
     }
 
     @PreUpdate
     public void beforeUpdate(Object currentState) {
-        String user =(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Integer user =(Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Class<?> clazz = currentState.getClass();
         Object previousState = ReflectionUtils.invokeMethod(
                 Objects.requireNonNull(ReflectionUtils.findMethod(clazz, "getPreviousState")), currentState);
         List<Field> primaryFieldOpt = Arrays.stream(clazz.getDeclaredFields())
                 .filter(field -> field.getAnnotation(Id.class) != null).toList();
         try {
-            Method setCreateBy = clazz.getMethod("setUpdateBy", String.class);
+            Method setCreateBy = clazz.getMethod("setUpdateBy", Integer.class);
             setCreateBy.invoke(currentState,user);
         }catch (Exception ex){
             log.error(ex.getMessage());
@@ -127,7 +129,7 @@ public class AuditListeners {
     @PreRemove
     public void beforeDelete(Object currentState) {
         Class<?> clazz = currentState.getClass();
-        String user =(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Integer user =(Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         List<Field> primaryFieldOpt = Arrays.stream(clazz.getDeclaredFields())
                 .filter(field -> field.getAnnotation(Id.class) != null).toList();

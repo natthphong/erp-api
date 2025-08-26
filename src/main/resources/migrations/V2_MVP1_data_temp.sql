@@ -153,9 +153,11 @@ select r.id, p.id, 'Y', now(), 'N'
 from tbl_role r
 join tbl_permission p on p.action_code='CREATE';
 
+delete from tbl_role_permission where  role_id=(select tbl_role.id from tbl_role where role_code='owner_system');
 
 insert into tbl_role_permission (role_id, permission_id, allowed, created_at, is_deleted)
 select r.id, p.id, 'Y', now(), 'N'
 from tbl_role r
 join tbl_permission p on 1=1
 where r.role_code='owner_system';
+

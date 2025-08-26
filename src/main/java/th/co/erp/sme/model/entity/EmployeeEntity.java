@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "tbl_employee", uniqueConstraints = {
-    @UniqueConstraint(name = "uk_tbl_employee__company_code__employee_code__is_deleted", columnNames = {"company_code", "employee_code", "is_deleted"}),
     @UniqueConstraint(name = "uk_tbl_employee__company_code__username__is_deleted", columnNames = {"company_code", "username", "is_deleted"})
 })
 @Data
@@ -31,8 +30,6 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
     @Column(name = "default_branch_code")
     private String defaultBranchCode;
 
-    @Column(name = "employee_code", nullable = false)
-    private String employeeCode;
 
     @Column(name = "first_name_th", nullable = false)
     private String firstNameTh;
@@ -77,18 +74,18 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
     private BigDecimal baseHourlyRate;
 
     @Column(name = "currency_code", nullable = false)
-    private String currencyCode;
+    private String currencyCode = "THB";
 
-    @Column(name = "hire_date", nullable = false)
+    @Column(name = "hire_date")
     private LocalDate hireDate;
 
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Column(name = "is_active", nullable = false)
-    private String isActive;
+    @Column(name = "is_active")
+    private String isActive = "Y";
 
-    @Column(name = "is_deleted", nullable = false)
+    @Column(name = "is_deleted")
     private String isDeleted;
 
     @Column(name = "created_at", nullable = false)
@@ -97,11 +94,17 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
     @Column(name = "created_by")
     private Integer createBy;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updateDate;
 
     @Column(name = "updated_by")
     private Integer updateBy;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "face_verify_at")
+    private LocalDateTime faceVerifyAt;
 
     @PrePersist public void insert(){ this.createDate = LocalDateTime.now(); }
     @PreUpdate public void update(){ this.updateDate = LocalDateTime.now(); }

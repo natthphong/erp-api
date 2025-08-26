@@ -22,7 +22,7 @@ public class AuditEntity {
     private String tableName;
     private String primaryKey;
     private LocalDateTime updateDate;
-    private String updateBy;
+    private Integer updateBy;
     private String detail;
     private String status;
 }

@@ -54,9 +54,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
         if (requestPath.contains("/api/v1/auth")) {
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken("GUEST",0, authorities);
+                    new UsernamePasswordAuthenticationToken(-1,-1, authorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            log.info("HELLO");
             filterChain.doFilter(request, response);
             return;
         }
