@@ -20,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import th.co.erp.sme.model.error.ErrorResponse;
+import th.co.erp.sme.model.jwt.UserJwtPayload;
 import th.co.erp.sme.property.CustomConfigMapProperties;
 import th.co.erp.sme.util.JsonHelper;
 import th.co.erp.sme.util.JwtHelper;
@@ -69,14 +70,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
 
             Jws<Claims> res = jwtHelper.verifyToken(jwtToken);
-            List<String> object_role = JsonHelper.objectToObjectTypeRef(res.getPayload().get("permissions"), new TypeReference<List<String>>() {
-            });
-            // TODO
-            object_role.forEach(e -> authorities.add(new SimpleGrantedAuthority(e)));
+            UserJwtPayload jwtPayload = JsonHelper.objectToObjectTypeRef(res.getPayload().get("body"), new TypeReference<>() {});
+
+            jwtPayload.getPermissions().forEach(e -> authorities.add(new SimpleGrantedAuthority(e)));
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(res.getPayload().get("employeeId"), res.getPayload().get("branchCode"), authorities);
+                    new UsernamePasswordAuthenticationToken(jwtPayload.getEmployeeId(), jwtPayload, authorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception e) {
+            log.error(e.getMessage());
             unauthorized(response);
             return;
         }

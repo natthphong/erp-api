@@ -4,10 +4,11 @@ package th.co.erp.sme.controller.rest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import th.co.erp.sme.base.BaseRequest;
 import th.co.erp.sme.base.BaseResponse;
+import th.co.erp.sme.base.list.PageBaseRequest;
 import th.co.erp.sme.model.request.*;
 import th.co.erp.sme.service.*;
+import th.co.erp.sme.service.role.GetListRoleService;
 
 @RestController
 @RequestMapping("/api/v1/role")
@@ -18,9 +19,9 @@ public class RoleController {
     private final SaveRoleService saveRoleService;
 
     @GetMapping("/list")
-    @PreAuthorize("hasAnyRole('ADMIN_ALL','ADMIN_GET' ,'OWNER')")
-    public BaseResponse roleList() {
-        return getListRoleService.execute(new BaseRequest());
+    @PreAuthorize("hasAnyRole('API_ROLE_LIST')")
+    public BaseResponse roleList(@RequestBody PageBaseRequest req) {
+        return getListRoleService.execute(req);
     }
 
 

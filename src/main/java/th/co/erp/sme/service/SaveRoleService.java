@@ -15,7 +15,7 @@ import th.co.erp.sme.model.entity.RoleEntity;
 import th.co.erp.sme.model.request.SaveRoleRequest;
 import th.co.erp.sme.model.wrapper.RoleModel;
 import th.co.erp.sme.repository.RoleRepository;
-import th.co.erp.sme.util.Constant;
+import th.co.erp.sme.util.constant.Constant;
 import th.co.erp.sme.util.SessionStoreUtils;
 
 import java.util.Objects;

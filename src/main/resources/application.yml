@@ -6,6 +6,11 @@ server:
 #  level:
 #    org.springframework: TRACE
 spring:
+  cache:
+    type: jcache
+    jcache:
+      provider: org.ehcache.jsr107.EhcacheCachingProvider
+      config: classpath:ehcache.xml
   logging:
     level:
       org.springframework: TRACE
@@ -16,7 +21,7 @@ spring:
     url: jdbc:postgresql://192.168.1.114:5432/erp_db
     name: org.postgresql.Driver
   jpa:
-    show-sql: true
+    show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   profiles:
     active:
@@ -26,7 +31,7 @@ spring:
   main:
     allow-circular-references: true
 app:
-  application-name: saintcare
+  application-name: erp-application
   tokens:
     jwt-secret: SECRETSECRETSECRETSECRETSECRETSECRETSECRETSECRETSECRET
     refresh-token:

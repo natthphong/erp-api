@@ -14,7 +14,7 @@ import org.springframework.util.ReflectionUtils;
 import th.co.erp.sme.model.audit.AuditDetail;
 import th.co.erp.sme.model.entity.AuditEntity;
 import th.co.erp.sme.repository.AuditRepository;
-import th.co.erp.sme.util.Constant;
+import th.co.erp.sme.util.constant.Constant;
 import th.co.erp.sme.util.JsonHelper;
 
 import java.lang.reflect.Field;
