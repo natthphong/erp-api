@@ -19,7 +19,7 @@ target/
 *.iws
 *.iml
 *.ipr
-
+src/main/resources/*dev.yml
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
