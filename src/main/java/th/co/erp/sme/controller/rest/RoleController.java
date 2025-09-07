@@ -18,7 +18,7 @@ public class RoleController {
 
     private final SaveRoleService saveRoleService;
 
-    @GetMapping("/list")
+    @PostMapping("/list")
     @PreAuthorize("hasAnyRole('API_ROLE_LIST')")
     public BaseResponse roleList(@RequestBody PageBaseRequest req) {
         return getListRoleService.execute(req);
